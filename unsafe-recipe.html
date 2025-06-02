@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Unsafe Recipe Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+      background-color: #fff9f0;
+      color: #333;
+    }
+    h1 {
+      color: #d9534f;
+    }
+    .section {
+      margin-bottom: 20px;
+    }
+    .ingredients, .methods {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    label {
+      display: inline-block;
+      margin-right: 10px;
+    }
+    .output {
+      margin-top: 30px;
+      padding: 20px;
+      background-color: #fff3cd;
+      border: 1px solid #ffeeba;
+      border-radius: 8px;
+    }
+    button {
+      padding: 10px 20px;
+      margin-top: 10px;
+      background-color: #f0ad4e;
+      border: none;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #ec971f;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🔥 Unsafe Recipe Generator</h1>
+
+  <div class="section">
+    <h2>Step 1: Choose up to 5 Ingredients</h2>
+    <div class="ingredients" id="ingredients">
+      <!-- Checkboxes will be generated here -->
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Step 2: Choose a Cooking Method</h2>
+    <div class="methods" id="methods">
+      <!-- Radio buttons will be generated here -->
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Step 3: Input Cooking Time (minutes)</h2>
+    <input type="number" id="time" min="1" value="30">
+  </div>
+
+  <button onclick="generateRecipe()">🎲 Generate My Unsafe Recipe</button>
+
+  <div class="output" id="recipeOutput">
+    <!-- Recipe will appear here -->
+  </div>
+
+  <script>
+    const ingredientsList = [
+      "Rotten Egg", "Wasabi", "Cotton Candy", "Raw Chicken", "Ice Cream",
+      "Hot Sauce", "Pickles", "Banana Peel", "Marshmallow", "Garlic",
+      "Sushi-grade Tuna", "Moldy Cheese", "Vinegar", "Toothpaste", "Frozen Fries",
+      "Soda", "Durian", "Chocolate Syrup", "Energy Drink", "Shrimp Shells"
+    ];
+
+    const methodsList = [
+      "Microwave", "Deep Fry", "Raw / No Cooking",
+      "Steam", "Bake", "Sous Vide", "Grilled with Candle Flame"
+    ];
+
+    const ingredientsDiv = document.getElementById("ingredients");
+    const methodsDiv = document.getElementById("methods");
+
+    ingredientsList.forEach((item, index) => {
+      const label = document.createElement("label");
+      const checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+      checkbox.value = item;
+      checkbox.name = "ingredient";
+      label.appendChild(checkbox);
+      label.append(" " + item);
+      ingredientsDiv.appendChild(label);
+    });
+
+    methodsList.forEach((item, index) => {
+      const label = document.createElement("label");
+      const radio = document.createElement("input");
+      radio.type = "radio";
+      radio.value = item;
+      radio.name = "method";
+      label.appendChild(radio);
+      label.append(" " + item);
+      methodsDiv.appendChild(label);
+    });
+
+    function generateRecipe() {
+      const selectedIngredients = Array.from(document.querySelectorAll('input[name="ingredient"]:checked'))
+        .map(input => input.value);
+      if (selectedIngredients.length === 0 || selectedIngredients.length > 5) {
+        alert("Please select 1 to 5 ingredients.");
+        return;
+      }
+
+      const selectedMethod = document.querySelector('input[name="method"]:checked');
+      if (!selectedMethod) {
+        alert("Please choose a cooking method.");
+        return;
+      }
+
+      const time = document.getElementById("time").value || 30;
+      const recipe = createUnsafeRecipe(selectedIngredients, selectedMethod.value, time);
+      document.getElementById("recipeOutput").innerText = recipe;
+    }
+
+    function createUnsafeRecipe(ingredients, method, time) {
+      const actions = [
+        "mash", "blend", "sauté", "overheat", "marinate aggressively",
+        "fuse chemically", "freeze then boil", "ferment in direct sunlight"
+      ];
+      const garnishOptions = [
+        "with toothpaste foam", "and serve with soda glaze",
+        "topped with shrimp shells", "and add a drizzle of wasabi",
+        "decorated using banana peels"
+      ];
+
+      const intro = `Take ${ingredients.join(", ")} and ${actions[Math.floor(Math.random() * actions.length)]} them.`;
+      const mainStep = `Then ${method.toLowerCase()} it for exactly ${time} minutes.`;
+      const garnish = `Finally, ${garnishOptions[Math.floor(Math.random() * garnishOptions.length)]}.`;
+      const warning = `⚠️ Warning: This dish may be hazardous to health. Consume at your own risk.`;
+
+      return `${intro} ${mainStep} ${garnish}\n\n${warning}`;
+    }
+  </script>
+
+</body>
+</html>
