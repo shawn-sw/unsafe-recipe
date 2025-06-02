@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Unsafe Recipe Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+      background-color: #fff9f0;
+      color: #333;
+    }
+    h1 {
+      color: #d9534f;
+    }
+    .section {
+      margin-bottom: 20px;
+    }
+    .ingredients, .methods {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    label {
+      display: inline-block;
+      margin-right: 10px;
+    }
+    .output {
+      margin-top: 30px;
+      padding: 20px;
+      background-color: #fff3cd;
+      border: 1px solid #ffeeba;
+      border-radius: 8px;
+      white-space: pre-wrap;
+    }
+    button {
+      padding: 10px 20px;
+      margin-top: 10px;
+      margin-right: 10px;
+      background-color: #f0ad4e;
+      border: none;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #ec971f;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Unsafe Recipe Generator</h1>
+
+  <div class="section">
+    <h2>Step 1: Choose up to 5 Ingredients</h2>
+    <h3>Add a Custom Ingredient</h3>
+    <input type="text" id="customIngredient" placeholder="Enter ingredient name">
+    <button onclick="addCustomIngredient()">➕ Add Ingredient</button>
+    <div class="ingredients" id="ingredients"></div>
+  </div>
+
+
+  <div class="section">
+    <h2>Step 2: Choose a Cooking Method</h2>
+    <div class="methods" id="methods"></div>
+  </div>
+
+  <div class="section">
+    <h2>Step 3: Input Cooking Time (minutes)</h2>
+    <input type="number" id="time" min="1" value="30">
+  </div>
+
+  <button onclick="generateRecipe()">🎲 Generate My Unsafe Recipe</button>
+  <button onclick="resetForm()">🔁 Reset Form</button>
+
+  <div class="output" id="recipeOutput"></div>
+
+  <script src="main.js"></script>
+</body>
+</html>
