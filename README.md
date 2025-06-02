@@ -2,7 +2,7 @@
 
 The Unsafe Recipe Generator is a humorous, interactive procedural generation project designed to create unpredictable, absurd, and potentially hazardous recipes based on user-selected ingredients, cooking methods, and chaotic system logic.
 
-## 🚀 Features
+##  Features
 
 * **Ingredient Selection**: Choose up to 5 ingredients from a predefined list or add your own.
 * **Method Selection**: Pick one of several strange or standard cooking methods.
@@ -11,19 +11,19 @@ The Unsafe Recipe Generator is a humorous, interactive procedural generation pro
 * **Multi-step Output**: Recipes are presented in 3 detailed steps, mimicking a cooking guide.
 * **Scoring System**:
 
-  * ⚠️ **Risk Level** (🔥): Based on ingredient combinations.
-  * ☣️ **Toxicity**: Calculated from suspicious components.
-  * 🍽️ **Taste Score**: Randomly evaluated for absurdity.
+  *  **Risk Level** (🔥): Based on ingredient combinations.
+  *  **Toxicity**: Calculated from suspicious components.
+  *  **Taste Score**: Randomly evaluated for absurdity.
 * **Failure Mode**: Some combinations trigger glitch output or system meltdown.
 
-## 🧠 Architecture
+##  Architecture
 
 * `index.html`: UI layout and structure.
 * `main.js`: Logic and DOM manipulation (modular, ES6-based).
 * `ingredients.js`: Categorized list of ingredients with types (main, side, condiment).
 
 
-## 🧪 Examples
+##  Examples
 
 **Sample Output:**
 
@@ -37,7 +37,7 @@ Step 3: Finally, garnish with lava salt.
 🍽 Taste Score: -4/10
 ```
 
-## 🎯 Academic Context
+##  Academic Context
 
 This project was developed as a final for a generative design course. It demonstrates:
 
@@ -45,7 +45,7 @@ This project was developed as a final for a generative design course. It demonst
 * Emergent behavior (chaotic ingredient combos)
 * Playful critique of automation and recommendation systems
 
-## ✍️ Team
+##  Team
 
 * Shaoan Wang
 * Bolan Guan
@@ -53,6 +53,6 @@ This project was developed as a final for a generative design course. It demonst
 * Guangyang Chen
 * Richard Tao
 
-## 📜 License
+##  License
 
 UCSC
