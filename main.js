@@ -9,6 +9,7 @@ const ingredientsDiv = document.getElementById("ingredients");
 const methodsDiv = document.getElementById("methods");
 
 function populateIngredients(list) {
+  ingredientsDiv.innerHTML = "";
   list.forEach(({ name }) => {
     const label = document.createElement("label");
     const checkbox = document.createElement("input");
@@ -22,6 +23,7 @@ function populateIngredients(list) {
 }
 
 function populateMethods(list) {
+  methodsDiv.innerHTML = "";
   list.forEach(item => {
     const label = document.createElement("label");
     const radio = document.createElement("input");
@@ -69,10 +71,8 @@ function generateRecipe() {
   const time = parseInt(document.getElementById("time").value) || 30;
   const style = document.getElementById("style").value;
 
-  const typesUsed = selectedIngredients.map(name => {
-    const match = ingredientData.find(i => i.name === name);
-    return match ? match.type : 'unknown';
-  });
+  const typeMap = new Map(ingredientData.map(i => [i.name, i.type]));
+  const typesUsed = selectedIngredients.map(name => typeMap.get(name) || 'unknown');
   const mainCount = typesUsed.filter(t => t === 'main').length;
   if (mainCount > 1) return alert("Only one main ingredient allowed.");
 
@@ -130,10 +130,63 @@ function randomItem(list) {
   return list[Math.floor(Math.random() * list.length)];
 }
 
-populateIngredients(ingredientData);
-populateMethods(defaultMethods);
+function saveRecipeImage() {
+  const text = document.getElementById("recipeOutput").innerText;
+  if (!text) return alert("Please generate a recipe first.");
+
+  const canvas = document.getElementById("recipeCanvas");
+  const ctx = canvas.getContext("2d");
+  ctx.fillStyle = "#fff";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  ctx.fillStyle = "#d9534f";
+  ctx.font = "bold 20px sans-serif";
+  ctx.textAlign = "center";
+  ctx.fillText("🔥 Unsafe Recipe", canvas.width / 2, 40);
+  ctx.textAlign = "start";
+
+  ctx.strokeStyle = "#ccc";
+  ctx.beginPath();
+  ctx.moveTo(20, 50);
+  ctx.lineTo(canvas.width - 20, 50);
+  ctx.stroke();
+
+  ctx.fillStyle = "#000";
+  ctx.font = "16px monospace";
+  wrapText(ctx, text, 20, 70, 470, 22);
+
+  const link = document.createElement("a");
+  link.download = "unsafe-recipe.png";
+  link.href = canvas.toDataURL("image/png");
+  link.click();
+}
+
+function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
+  const lines = text.split(/\n/g);
+  for (const paragraph of lines) {
+    const words = paragraph.split(' ');
+    let line = '';
+    for (let n = 0; n < words.length; n++) {
+      const testLine = line + words[n] + ' ';
+      const metrics = ctx.measureText(testLine);
+      if (metrics.width > maxWidth && n > 0) {
+        ctx.fillText(line, x, y);
+        line = words[n] + ' ';
+        y += lineHeight;
+      } else {
+        line = testLine;
+      }
+    }
+    ctx.fillText(line, x, y);
+    y += lineHeight + 5;
+  }
+}
 
 document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("generateButton").addEventListener("click", generateRecipe);
-    document.getElementById("resetButton").addEventListener("click", resetForm);
-  });
+  populateIngredients(ingredientData);
+  populateMethods(defaultMethods);
+  document.getElementById("addIngredientButton").addEventListener("click", addCustomIngredient);
+  document.getElementById("generateButton").addEventListener("click", generateRecipe);
+  document.getElementById("resetButton").addEventListener("click", resetForm);
+  document.getElementById("saveImageButton").addEventListener("click", saveRecipeImage);
+});

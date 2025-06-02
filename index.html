@@ -60,7 +60,7 @@
   <div class="section">
     <h3>Add a Custom Ingredient</h3>
     <input type="text" id="customIngredient" placeholder="Enter ingredient name">
-    <button onclick="addCustomIngredient()">➕ Add Ingredient</button>
+    <button id="addIngredientButton">➕ Add Ingredient</button>
   </div>
 
   <div class="section">
@@ -87,6 +87,11 @@
   <button id="resetButton">🔁 Reset Form</button>
 
   <div class="output" id="recipeOutput"></div>
+
+  <!-- 生成图片按钮 -->
+  <button id="saveImageButton">🖼️ Save Recipe as Image</button>
+  <!-- Canvas 用于绘图，但默认隐藏 -->
+  <canvas id="recipeCanvas" width="512" height="512" style="display:none;"></canvas>
 
   <script type="module" src="main.js"></script>
 </body>

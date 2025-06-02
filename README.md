@@ -22,23 +22,6 @@ The Unsafe Recipe Generator is a humorous, interactive procedural generation pro
 * `main.js`: Logic and DOM manipulation (modular, ES6-based).
 * `ingredients.js`: Categorized list of ingredients with types (main, side, condiment).
 
-## 📦 Setup
-
-### Serve Locally
-
-Because this project uses JavaScript modules (`import`), it must be served over HTTP:
-
-```bash
-python -m http.server
-# or use VS Code Live Server
-```
-
-Then open: [http://localhost:8000](http://localhost:8000)
-
-### GitHub Pages
-
-* Make sure to use `<script type="module">`
-* Host all files in the repository root or use relative paths
 
 ## 🧪 Examples
 
@@ -72,4 +55,4 @@ This project was developed as a final for a generative design course. It demonst
 
 ## 📜 License
 
-MIT (for fun, not for food!)
+UCSC
