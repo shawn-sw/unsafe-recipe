@@ -54,12 +54,14 @@
 
   <div class="section">
     <h2>Step 1: Choose up to 5 Ingredients</h2>
-    <h3>Add a Custom Ingredient</h3>
-    <input type="text" id="customIngredient" placeholder="Enter ingredient name">
-    <button onclick="addCustomIngredient()">➕ Add Ingredient</button>
     <div class="ingredients" id="ingredients"></div>
   </div>
 
+  <div class="section">
+    <h3>Add a Custom Ingredient</h3>
+    <input type="text" id="customIngredient" placeholder="Enter ingredient name">
+    <button onclick="addCustomIngredient()">➕ Add Ingredient</button>
+  </div>
 
   <div class="section">
     <h2>Step 2: Choose a Cooking Method</h2>
@@ -71,11 +73,21 @@
     <input type="number" id="time" min="1" value="30">
   </div>
 
-  <button onclick="generateRecipe()">🎲 Generate My Unsafe Recipe</button>
-  <button onclick="resetForm()">🔁 Reset Form</button>
+  <div class="section">
+    <h2>Step 4: Select Recipe Style</h2>
+    <select id="style">
+      <option value="default">Default</option>
+      <option value="lab">Mad Scientist Lab</option>
+      <option value="hell">Hell Kitchen</option>
+      <option value="kids">Kids' Imagination</option>
+    </select>
+  </div>
+
+  <button id="generateButton">🎲 Generate My Unsafe Recipe</button>
+  <button id="resetButton">🔁 Reset Form</button>
 
   <div class="output" id="recipeOutput"></div>
 
-  <script src="main.js"></script>
+  <script type="module" src="main.js"></script>
 </body>
 </html>
