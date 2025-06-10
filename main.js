@@ -20,6 +20,13 @@ const defaultMethods = [
 let selectedIngredients = [];
 let selectedMethod = null;
 
+const gifList = ["loading1.gif", "loading2.gif", "loading3.gif"];
+const preloadedGifs = gifList.map(src => {
+  const img = new Image();
+  img.src = src;
+  return img;
+});
+
 function renderIngredients() {
   ingredientContainer.innerHTML = '';
   ingredientData.forEach((item, index) => {
